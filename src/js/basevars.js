@@ -17,4 +17,8 @@ var $WINDOW = $(window),
     WIDTH = 500,
     HEIGHT = 333,
 
+    BEZIER;
+
+if (!CSS3) {
     BEZIER = bez([.1, 0, .25, 1]);
+}

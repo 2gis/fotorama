@@ -495,7 +495,7 @@ jQuery.Fotorama = function ($fotorama, opts) {
       } else if (type === 'navDot') {
         $navDotFrame = $navDotFrame.add($frame);
       } else if (type === 'navThumb') {
-        frameData.$wrap = $frame.children(':first');
+        frameData.$wrap = $($frame.children()[0]);
         $navThumbFrame = $navThumbFrame.add($frame);
         if (dataFrame.video) {
           $frame.append($videoPlay.clone());
@@ -1018,18 +1018,30 @@ jQuery.Fotorama = function ($fotorama, opts) {
 
         stageShaftReposition();
 
-        $stage
-            .addClass(stageOnlyActiveClass)
-            .stop()
-            .animate({width: width, height: height}, time, function () {
-              $stage.removeClass(stageOnlyActiveClass);
-            });
+        if($stage.stop) {
+            $stage
+                .addClass(stageOnlyActiveClass)
+                .stop()
+                .animate({width: width, height: height}, time, function () {
+                  $stage.removeClass(stageOnlyActiveClass);
+                });
+        } else {
+            $stage
+                .addClass(stageOnlyActiveClass)
+                .css({width: width, height: height})
+                .removeClass(stageOnlyActiveClass);
+        }
 
         if (o_nav) {
-          $nav
-              .stop()
-              .animate({width: width}, time)
-              .css({left: 0});
+          if($nav.stop) {
+              $nav
+                  .stop()
+                  .animate({width: width}, time)
+                  .css({left: 0});
+          } else {
+              $nav
+                  .css({width: width, left: 0});
+          }
 
           slideNavShaft({guessIndex: activeIndex, time: time, coo: measures.w / 2});
           if (o_nav === 'thumbs' && navAppend.ok) slideThumbBorder(time);
@@ -1121,13 +1133,8 @@ jQuery.Fotorama = function ($fotorama, opts) {
     $wrap.toggleClass(wrapNoControlsClass, FLAG);
   }
 
-  $wrap.hover(
-      function () {
-        toggleControlsClass(false);
-      }, function () {
-        toggleControlsClass(true);
-      }
-  );
+  $wrap.on("mouseenter", function () { toggleControlsClass(false); })
+       .on("mouseleave", function () { toggleControlsClass(true); });
 
   function onStageTap (e, touch) {
     if ($videoPlaying) {
