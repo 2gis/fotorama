@@ -4,12 +4,17 @@ var $WINDOW = $(window),
     $BODY,
 
     COMPAT = document.compatMode === 'CSS1Compat',
-    QUIRKS_FORCE = document.location.hash.replace('#', '') === 'quirks',
+    QUIRKS_FORCE = location.hash.replace('#', '') === 'quirks',
     CSS3 = Modernizr.csstransforms3d && !QUIRKS_FORCE,
     FULLSCREEN = fullScreenApi.ok,
 
-    TOUCH_TIMEOUT = 300,
-    TRANSITION_DURATION = 333,
+    MOBILE = navigator.userAgent.match(/Android|webOS|iPhone|iPad|iPod|BlackBerry|Windows Phone/i),
+    SLOW = !CSS3 || MOBILE,
+
+    MS_POINTER = window.navigator.msPointerEnabled,
+
+    TOUCH_TIMEOUT = 250,
+    TRANSITION_DURATION = 300,
     AUTOPLAY_INTERVAL = 5000,
     MARGIN = 2,
     THUMB_SIZE = 64,
@@ -17,8 +22,17 @@ var $WINDOW = $(window),
     WIDTH = 500,
     HEIGHT = 333,
 
+<<<<<<< HEAD
     BEZIER;
 
 if (!CSS3) {
     BEZIER = bez([.1, 0, .25, 1]);
 }
+=======
+
+    STAGE_FRAME_KEY = '$stageFrame',
+    NAV_DOT_FRAME_KEY = '$navDotFrame',
+    NAV_THUMB_FRAME_KEY = '$navThumbFrame',
+
+    BEZIER = bez([.1, 0, .25, 1]);
+>>>>>>> 72f3845790dd9046a7bf60eb6a78a10635f98873

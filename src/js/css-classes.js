@@ -2,12 +2,13 @@ var _fotoramaClass = 'fotorama',
     _fullscreenClass = 'fullscreen',
 
     wrapClass = _fotoramaClass + '__wrap',
-    wrapNotReadyClass = wrapClass + '--not-ready',
     wrapCss3Class = wrapClass + '--css3',
     wrapVideoClass = wrapClass + '--video',
     wrapFadeClass = wrapClass + '--fade',
     wrapSlideClass = wrapClass + '--slide',
     wrapNoControlsClass = wrapClass + '--no-controls',
+    wrapNoShadowsClass = wrapClass + '--no-shadows',
+    wrapPanYClass = wrapClass + '--pan-y',
 
     stageClass = _fotoramaClass + '__stage',
     stageFrameClass = stageClass + '__frame',
@@ -16,6 +17,7 @@ var _fotoramaClass = 'fotorama',
     stageOnlyActiveClass = stageClass + '--only-active',
 
     grabClass = _fotoramaClass + '__grab',
+    pointerClass = _fotoramaClass + '__pointer',
 
     arrClass = _fotoramaClass + '__arr',
     arrDisabledClass = arrClass + '--disabled',
@@ -36,7 +38,6 @@ var _fotoramaClass = 'fotorama',
     fadeFrontClass = fadeClass + '-front',
     fadeRearClass = fadeClass + '-rear',
 
-
     shadowClass = _fotoramaClass + '__shadow',
     shadowsClass = shadowClass + 's',
     shadowsLeftClass = shadowsClass + '--left',
@@ -55,7 +56,8 @@ var _fotoramaClass = 'fotorama',
     loadedClass = _fotoramaClass + '__loaded',
     loadedFullClass = loadedClass + '--full',
     loadedImgClass = loadedClass + '--img',
-    loadClass = _fotoramaClass + '__load',
+
+    grabbingClass = _fotoramaClass + '__grabbing',
 
     imgClass = _fotoramaClass + '__img',
     imgFullClass = imgClass + '--full',
