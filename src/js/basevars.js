@@ -22,17 +22,11 @@ var $WINDOW = $(window),
     WIDTH = 500,
     HEIGHT = 333,
 
-<<<<<<< HEAD
+    STAGE_FRAME_KEY = '$stageFrame',
+    NAV_DOT_FRAME_KEY = '$navDotFrame',
+    NAV_THUMB_FRAME_KEY = '$navThumbFrame',
     BEZIER;
 
 if (!CSS3) {
     BEZIER = bez([.1, 0, .25, 1]);
 }
-=======
-
-    STAGE_FRAME_KEY = '$stageFrame',
-    NAV_DOT_FRAME_KEY = '$navDotFrame',
-    NAV_THUMB_FRAME_KEY = '$navThumbFrame',
-
-    BEZIER = bez([.1, 0, .25, 1]);
->>>>>>> 72f3845790dd9046a7bf60eb6a78a10635f98873
