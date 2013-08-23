@@ -673,8 +673,9 @@ jQuery.Fotorama = function ($fotorama, opts) {
     var navFrameData = that.activeFrame[navFrameKey].data();
     slide($thumbBorder, {
       time: time * .9,
-      pos: navFrameData.l,
-      width: navFrameData.w - MARGIN * 2
+      // online4 hack to right positioning of thumb border because change MARGIN constant from 2 to 8
+      pos: navFrameData.l - MARGIN,
+      width: navFrameData.w
     });
   }
 

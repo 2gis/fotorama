@@ -16,7 +16,7 @@ var $WINDOW = $(window),
     TOUCH_TIMEOUT = 250,
     TRANSITION_DURATION = 300,
     AUTOPLAY_INTERVAL = 5000,
-    MARGIN = 2,
+    MARGIN = 8, // online4: this is border-width of nav-thumb border, we increase it from 2 to 8
     THUMB_SIZE = 64,
 
     WIDTH = 500,
