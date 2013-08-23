@@ -73,5 +73,6 @@ var _fotoramaClass = 'fotorama',
     videoCloseClass = videoClass + '-close',
 
     captionClass = _fotoramaClass + '__caption',
+    counterClass = _fotoramaClass + '__counter',
 
     ooooClass = _fotoramaClass + '__oooo';
