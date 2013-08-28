@@ -515,7 +515,11 @@ jQuery.Fotorama = function ($fotorama, opts) {
               .appendTo($frame);
         }
 
-        if (opts.captions && dataFrame.caption) {
+        if (dataFrame.copyright) {
+            $('<div class="' + copyrightClass + ' ' + dataFrame.copyrightclass + '"></div>').append(dataFrame.copyright).appendTo($frame);
+        }
+
+        if (dataFrame.caption) {
           $('<div class="' + captionClass + '"></div>').append(dataFrame.caption).appendTo($frame);
         }
 
@@ -532,6 +536,9 @@ jQuery.Fotorama = function ($fotorama, opts) {
         $navDotFrame = $navDotFrame.add($frame);
       } else if (type === 'navThumb') {
         frameData.$wrap = $($frame.children()[0]);
+        if (frameData.data.thumbclass) { // online4: you can add data-thumbClass attribute to <a> in template to apply class to navigation thumb
+          frameData.$wrap.addClass(frameData.data.thumbclass);
+        }
         $navThumbFrame = $navThumbFrame.add($frame);
         if (dataFrame.video) {
           $frame.append($videoPlay.clone());
