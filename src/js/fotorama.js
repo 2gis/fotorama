@@ -523,7 +523,7 @@ jQuery.Fotorama = function ($fotorama, opts) {
           $('<div class="' + captionClass + '"></div>').append(dataFrame.caption).appendTo($frame);
         }
 
-        if (opts.counter) {
+        if (dataFrame.counter) {
             $('<div class="' + counterClass + '"></div>').append(dataFrame.counter).appendTo($frame);
         }
 
