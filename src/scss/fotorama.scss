@@ -1,5 +1,4 @@
-$time: 300ms;
-
+$time: .3s;
 
 @import 'mixins';
 @import 'placeholders';
@@ -24,24 +23,24 @@ $time: 300ms;
   height: 100% !important;
   max-width: 100% !important;
   max-height: 100% !important;
-  overflow: hidden !important;
   margin: 0 !important;
   padding: 0 !important;
+  overflow: hidden !important;
   background: #000;
 }
 
 .fotorama--fullscreen {
-  position: absolute;
+  position: absolute !important;
   top: 0 !important;
   left: 0 !important;
   right: 0 !important;
   bottom: 0 !important;
-  float: none;
-  z-index: 2147483647;
+  float: none !important;
+  z-index: 2147483647 !important;
   background: #000;
-  width: auto !important;
-  height: auto !important;
-  margin: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  @extend %image-reset;
   .fotorama__stage,
   .fotorama__nav {
     background: #000;
@@ -66,10 +65,7 @@ $time: 300ms;
 }
 
 .fotorama__wrap--pan-y {
-  //.fotorama__stage__shaft,
-  //.fotorama__nav__shaft {
-    -ms-touch-action: pan-y;
-  //}
+  -ms-touch-action: pan-y;
 }
 
 .fotorama__stage__shaft {
@@ -91,10 +87,6 @@ $time: 300ms;
 .fotorama__wrap--slide {
   .fotorama__stage__frame {
     opacity: 1 !important;
-    //@extend %before-load-bg;
-    //&.fotorama__loaded {
-    //  background-color: transparent;
-    //}
   }
 }
 
@@ -104,14 +96,10 @@ $time: 300ms;
 
 .fotorama__img {
   @include opacity(0);
-  max-width: 99999px !important;
-  max-height: 99999px !important;
-  min-width: 0 !important;
-  min-height: 0 !important;
+  @extend %image-reset;
   .fotorama__loaded &,
   .fotorama__error & {
     @include opacity(1);
-    //@extend %backface-visibility;
   }
 }
 
@@ -276,6 +264,8 @@ $time: 300ms;
 }
 
 .fotorama__nav__frame.fotorama__active {
+  pointer-events: none;
+  cursor: default;
   .fotorama__dot {
     width: 6px;
     height: 6px;
@@ -330,10 +320,9 @@ $time: 300ms;
     }
   }
 
-  //.fotorama__wrap--no-controls &,
-  //.fotorama__wrap--video & {
-  //  @include opacity(0);
-  //}
+  .fotorama__wrap--video & {
+    display: none;
+  }
 }
 
 .fotorama--hidden {
@@ -380,7 +369,7 @@ $time: 300ms;
   .fotorama__stage__shaft,
   .fotorama__nav__shaft,
   .fotorama__thumb-border {
-    @extend %transition-for-touch;
+    @extend %transition-for-slide;
   }
   .fotorama__stage__shaft,
   .fotorama__nav__shaft,
@@ -391,6 +380,7 @@ $time: 300ms;
   .fotorama__html,
   .fotorama__caption {
     @extend %initial-translate;
+    -webkit-backface-visibility: hidden;
   }
   .fotorama__img,
   .fotorama__html,

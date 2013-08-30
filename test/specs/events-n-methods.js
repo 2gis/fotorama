@@ -1,5 +1,5 @@
 document.write(
-    '<div class="fotorama" data-width="700" data-height="467" data-auto="false" id="fotorama">' +
+    '<div class="fotorama" data-width="700" data-height="467" data-max-width="false" data-auto="false" id="fotorama">' +
         '<img src="test/i/okonechnikov/1-lo.jpg">' +
         '<img src="test/i/okonechnikov/2-lo.jpg">' +
         '<img src="test/i/okonechnikov/9-lo.jpg">' +
@@ -222,7 +222,7 @@ describe('Events', function () {
     expect(fotorama.options).toEqual(jasmine.any(Object));
     expect(fotorama.options.auto).toBe(false);
     expect(fotorama.options.width).toBe(700);
-    expect(fotorama.options.allowFullScreen).toBe(true);
+    expect(fotorama.options.allowfullscreen).toBe(true);
 
     expect(fotorama.options.keyboard).toBe(false);
     fotorama.setOptions({keyboard: true});

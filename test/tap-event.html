@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Dissolve</title>
+	<title>Basic fotorama</title>
 	<meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
 
@@ -13,30 +13,32 @@
 	<script src="../product/fotorama.js"></script>
 
   <script type="text/javascript">
-    $(window).on('load', function () {
+    $(function () {
       f = $('.fotorama').data('fotorama');
-    });
+
+      $('.fotorama').on('fotorama:stagetap', function (e, fotorama, c) {
+        fotorama.prevent.stagetap = Math.random() >= .5;
+      });
+
+    })
   </script>
 </head>
 
 <body>
 
-<p>Dissolve:<p>
-<pre style="margin-top: -1em; margin-left: 1em;"><code>&lt;div class="fotorama"
-     <mark>data-transition="dissolve"</mark>></code></pre>
+<!--<p>Basic fotorama:<p>
+<pre style="margin-top: -1em; margin-left: 1em;"><code>&lt;div <mark>class="fotorama"</mark>></code></pre>-->
 
 <!-- Fotorama -->
 <div class="fotorama"
-     data-transition="dissolve"
-     data-loop="true"
      data-width="700"
      data-ratio="3/2"
      data-max-width="100%">
-	<a href="i/okonechnikov/1-lo.jpg" data-caption="X - - - -"></a>
-	<a href="i/okonechnikov/2-lo.jpg" data-caption="- X - - -"></a>
-	<a href="i/okonechnikov/9-lo.jpg" data-caption="- - X - -"></a>
-	<a href="i/okonechnikov/6-lo.jpg" data-caption="- - - X -"></a>
-	<a href="i/okonechnikov/5-lo.jpg" data-caption="- - - - X"></a>
+	<a href="i/okonechnikov/1-lo.jpg"></a>
+	<a href="i/okonechnikov/2-lo.jpg"></a>
+	<a href="i/okonechnikov/9-lo.jpg"></a>
+	<a href="i/okonechnikov/6-lo.jpg"></a>
+	<a href="i/okonechnikov/5-lo.jpg"></a>
 </div>
 
 <!-- © -->

@@ -51,6 +51,7 @@ $arrSize: 32px;
 }
 
 .fotorama__arr--disabled {
+  pointer-events: none;
   cursor: default;
   *display: none;
   filter: alpha(opacity=0);
@@ -154,6 +155,8 @@ $arrSize: 32px;
   .fotorama__fullscreen-icon,
   .fotorama__video-play,
   .fotorama__video-close {
-    transition: all $time;
+    transition-property: top, right, left, opacity;
+    transition-duration: $time;
   }
 }
+
