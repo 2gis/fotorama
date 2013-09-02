@@ -5,7 +5,8 @@ var $WINDOW = $(window),
 
     QUIRKS_FORCE = location.hash.replace('#', '') === 'quirks',
     TRANSFORMS3D = Modernizr.csstransforms3d,
-    CSS3 = TRANSFORMS3D && !QUIRKS_FORCE,
+    TRANSFORMS2D = Modernizr.csstransforms,
+    CSS3 = (TRANSFORMS3D || TRANSFORMS2D) && !QUIRKS_FORCE,
     COMPAT = TRANSFORMS3D || document.compatMode === 'CSS1Compat',
     FULLSCREEN = fullScreenApi.ok,
 

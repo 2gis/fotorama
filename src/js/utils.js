@@ -19,7 +19,11 @@ function readPosition ($el) {
 function getTranslate (pos, _001) {
   var obj = {};
   if (CSS3) {
-    obj.transform = 'translate3d(' + (pos + (_001 ? 0.001 : 0)) + 'px,0,0)'; // 0.001 to remove Retina artifacts
+      if (TRANSFORMS3D) {
+        obj.transform = 'translate3d(' + (pos + (_001 ? 0.001 : 0)) + 'px,0,0)'; // 0.001 to remove Retina artifacts
+      } else {
+        obj.transform = 'translate(' + (pos + (_001 ? 0.001 : 0)) + 'px,0px)'; // 0.001 to remove Retina artifacts
+      }
   } else {
     obj.left = pos;
   }
