@@ -315,7 +315,8 @@ function fit ($el, measuresToFit, method) {
       elData.l.w !== measuresToFit.w ||
       elData.l.h !== measuresToFit.h ||
       elData.l.m !== method)) {
-    var width = measures.width,
+    var frame = elData.frameMeasures || measures,
+        width = measures.width,
         height = measures.height,
         ratio = measuresToFit.w / measuresToFit.h,
         biggerRatioFLAG = measures.ratio >= ratio,
@@ -326,9 +327,12 @@ function fit ($el, measuresToFit, method) {
     if (biggerRatioFLAG && (fitFLAG || containFLAG) || !biggerRatioFLAG && coverFLAG) {
       width = minMaxLimit(measuresToFit.w, 0, fitFLAG ? width : Infinity);
       height = width / measures.ratio;
-    } else if (biggerRatioFLAG && coverFLAG || !biggerRatioFLAG && (fitFLAG || containFLAG)) {
+    } else if (biggerRatioFLAG && coverFLAG || !biggerRatioFLAG && containFLAG) {
       height = minMaxLimit(measuresToFit.h, 0, fitFLAG ? height : Infinity);
       width = height * measures.ratio;
+    } else if (!biggerRatioFLAG && fitFLAG) {
+        height = minMaxLimit(frame.h, 0, fitFLAG ? height : Infinity);
+        width = height * measures.ratio;
     }
 
     $el.css({

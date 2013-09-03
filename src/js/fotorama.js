@@ -466,6 +466,11 @@ jQuery.Fotorama = function ($fotorama, opts) {
           ratio: ratio
         };
 
+        imgData.frameMeasures = {
+          w: $frame.width(),
+          h: $frame.height()
+        };
+
         setMeasures(width, height, ratio, index);
 
         $img
@@ -592,9 +597,16 @@ jQuery.Fotorama = function ($fotorama, opts) {
     });
   }
 
-  function callFit ($img, measuresToFit, method) {
-    return $img && $img.length && fit($img, measuresToFit, method);
-  }
+    function callFit ($img, measuresToFit, method, $frame) {
+        if ($frame && $img) {
+            var imgData = $img.data();
+            imgData.frameMeasures = {
+                w: $frame.width(),
+                h: $frame.height()
+            };
+        }
+        return $img && $img.length && fit($img, measuresToFit, method);
+    }
 
   function stageFramePosition (indexes) {
     eachIndex(indexes, 'stage', function (i, index, dataFrame, $frame, key, frameData) {
@@ -609,8 +621,8 @@ jQuery.Fotorama = function ($fotorama, opts) {
 
       var method = dataFrame.fit || opts.fit;
 
-      callFit(frameData.$img, measures, method);
-      callFit(frameData.$full, measures, method);
+      callFit(frameData.$img, measures, method, $frame);
+      callFit(frameData.$full, measures, method, $frame);
     });
   }
 
