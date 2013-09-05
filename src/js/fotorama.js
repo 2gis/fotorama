@@ -130,7 +130,8 @@ jQuery.Fotorama = function ($fotorama, opts) {
   }
 
   function bindGlobalEvents (FLAG) {
-    var keydownCommon = 'keydown.' + _fotoramaClass,
+    var resizeTimer,
+        keydownCommon = 'keydown.' + _fotoramaClass,
         keydownLocal = 'keydown.' + _fotoramaClass + stamp,
         resizeLocal = 'resize.' + _fotoramaClass + stamp;
 
@@ -162,7 +163,10 @@ jQuery.Fotorama = function ($fotorama, opts) {
             });
       }
 
-      $WINDOW.on(resizeLocal, that.resize);
+      $WINDOW.on(resizeLocal, function() {
+          clearTimeout(resizeTimer);
+          resizeTimer = setTimeout(that.resize, 100);
+      });
     } else {
       $DOCUMENT.off(keydownLocal);
       $WINDOW.off(resizeLocal);
