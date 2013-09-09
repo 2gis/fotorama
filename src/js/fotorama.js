@@ -569,16 +569,8 @@ jQuery.Fotorama = function ($fotorama, opts) {
               .appendTo($frame);
         }
 
-        if (dataFrame.copyright) {
-            $('<div class="' + copyrightClass + ' ' + dataFrame.copyrightclass + '"></div>').append(dataFrame.copyright).appendTo($frame);
-        }
-
         if (dataFrame.caption) {
           $('<div class="' + captionClass + '"></div>').append(dataFrame.caption).appendTo($frame);
-        }
-
-        if (dataFrame.counter) {
-            $('<div class="' + counterClass + '"></div>').append(dataFrame.counter).appendTo($frame);
         }
 
         dataFrame.video && $frame
