@@ -25,17 +25,19 @@ $.fn.fotorama = function (opts) {
                   height: null,
                   minheight: null,
                   maxheight: null,
+
                   ratio: null, // '16/9' || 500/333 || 1.5
+
+                  margin: MARGIN,
+                  glimpse: 0,
 
                   // navigation, thumbs
                   nav: 'dots', // 'thumbs' || false
                   navposition: 'bottom', // 'top'
                   thumbwidth: THUMB_SIZE,
                   thumbheight: THUMB_SIZE,
-
-                  arrows: true,
-                  click: true,
-                  swipe: true,
+                  thumbmargin: MARGIN,
+                  thumbborderwidth: MARGIN,
 
                   allowfullscreen: false, // true || 'native'
 
@@ -47,18 +49,27 @@ $.fn.fotorama = function (opts) {
                   captions: true,
 
                   hash: false,
+                  startindex: 0,
+
+                  loop: false,
 
                   autoplay: false,
                   stopautoplayontouch: true,
 
                   keyboard: false,
 
-                  loop: false,
+                  arrows: true,
+                  click: true,
+                  swipe: true,
+                  trackpad: true,
 
                   shuffle: false,
 
+                  direction: 'ltr', // 'rtl'
+
                   shadows: true
                 },
+                window.fotoramaDefaults,
                 opts,
                 fotoramaData
             )

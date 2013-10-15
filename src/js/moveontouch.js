@@ -69,7 +69,7 @@ function moveOnTouch ($el, options) {
       }
 
       if (!tail.noMove) {
-        $el.css(getTranslate(moveElPos));
+        $el.css(getTranslate(moveElPos, options._001));
         if (!movedFLAG) {
           movedFLAG = true;
           // only for mouse
@@ -149,7 +149,7 @@ function moveOnTouch ($el, options) {
 
     time *= slowFLAG ? 10 : 1;
 
-    (options.onEnd || noop).call(el, $.extend(result, {pos: moveElPos, newPos: newPos, overPos: overPos, time: time, moved: (longTouchFLAG && snap) || result.moved}));
+    (options.onEnd || noop).call(el, $.extend(result, {pos: moveElPos, newPos: newPos, overPos: overPos, time: time, moved: longTouchFLAG ? snap : Math.abs(moveElPos - startElPos) > (snap ? 0 : 3)}));
   }
 
   tail = $.extend(touch(options.$wrap, {

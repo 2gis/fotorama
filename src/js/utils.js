@@ -69,7 +69,7 @@ function bindTransitionEnd ($el) {
       };
   el.addEventListener(transitionEndEvent[Modernizr.prefixed('transition')], function (e) {
     elData.tProp && e.propertyName.match(elData.tProp) && elData.onEndFn();
-  });
+  }, false);
   elData.tEnd = true;
 }
 
@@ -173,7 +173,7 @@ function findVideoId (href, forceVideo) {
     type = 'custom';
   }
 
-  return id ? {id: id, type: type} : false;
+  return id ? {id: id, type: type, s: href.search.replace(/^\?/, '')} : false;
 }
 
 function getVideoThumbs (dataFrame, data, fotorama) {
@@ -368,9 +368,9 @@ function findShadowEdge (pos, min, max) {
   return min === max ? false : pos <= min ? 'left' : pos >= max ? 'right' : 'left right';
 }
 
-function getIndexFromHash (hash, data, ok) {
+function getIndexFromHash (hash, data, ok, startindex) {
   if (!ok) return false;
-  if (!isNaN(hash)) return hash - 1;
+  if (!isNaN(hash)) return hash - (startindex ? 0 : 1);
 
   var index;
 
@@ -468,4 +468,13 @@ function getRatio (_ratio) {
     ratio = _ratio.split('/');
     return +ratio[0] / +ratio[1] || undefined;
   }
+}
+
+function stopEvent (e, stopPropagation) {
+  e.preventDefault();
+  stopPropagation && e.stopPropagation();
+}
+
+function getDirectionSign (forward) {
+  return forward ? '>' : '<';
 }
