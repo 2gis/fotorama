@@ -316,6 +316,7 @@ function fit ($el, measuresToFit, method) {
       elData.l.h !== measuresToFit.h ||
       elData.l.m !== method)) {
     var frame = elData.frameMeasures || measures,
+        frameMeasures = frame.w / frame.h,
         width = measures.width,
         height = measures.height,
         ratio = measuresToFit.w / measuresToFit.h,
@@ -324,15 +325,20 @@ function fit ($el, measuresToFit, method) {
         containFLAG = method === 'contain',
         coverFLAG = method === 'cover';
 
-    if (biggerRatioFLAG && (fitFLAG || containFLAG) || !biggerRatioFLAG && coverFLAG) {
+    if (fitFLAG) {
+      if(frameMeasures <= measures.ratio) {
+        width = minMaxLimit(frame.w, 0, fitFLAG ? width : Infinity);
+        height = width / measures.ratio;
+      } else {
+        height = minMaxLimit(frame.h, 0, fitFLAG ? height : Infinity);
+        width = height * measures.ratio;
+      }
+    } else if (biggerRatioFLAG && (fitFLAG || containFLAG) || !biggerRatioFLAG && coverFLAG) {
       width = minMaxLimit(measuresToFit.w, 0, fitFLAG ? width : Infinity);
       height = width / measures.ratio;
     } else if (biggerRatioFLAG && coverFLAG || !biggerRatioFLAG && containFLAG) {
       height = minMaxLimit(measuresToFit.h, 0, fitFLAG ? height : Infinity);
       width = height * measures.ratio;
-    } else if (!biggerRatioFLAG && fitFLAG) {
-        height = minMaxLimit(frame.h, 0, fitFLAG ? height : Infinity);
-        width = height * measures.ratio;
     }
 
     $el.css({
