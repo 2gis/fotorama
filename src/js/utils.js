@@ -253,9 +253,7 @@ function getDataFromHtml ($el) {
     $.extend(imgData, {
       width: width,
       height: height,
-      thumbratio: getRatio(imgData.thumbratio
-          || (numberFromMeasure(imgData.thumbwidth || ($child && $child.attr('width')) || separateThumbFLAG || width)
-              / numberFromMeasure(imgData.thumbheight || ($child && $child.attr('height')) || separateThumbFLAG || height)))
+      thumbratio: getRatio(imgData.thumbratio || (numberFromMeasure(imgData.thumbwidth || ($child && $child.attr('width')) || separateThumbFLAG || width) / numberFromMeasure(imgData.thumbheight || ($child && $child.attr('height')) || separateThumbFLAG || height)))
     });
   }
 
@@ -296,12 +294,14 @@ function waitFor (test, fn, timeout) {
 }
 
 function setHash (hash) {
+  console.time('setHash ' + hash);
   location.replace(location.protocol
       + '//'
       + location.host
       + location.pathname.replace(/^\/?/, '/')
       + location.search
       + '#' + hash);
+  console.timeEnd('setHash ' + hash);
 }
 
 function fit ($el, measuresToFit, method) {

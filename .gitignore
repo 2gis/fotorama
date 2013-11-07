@@ -10,13 +10,13 @@ profile
 
 node_modules
 *.zip
-product
-# secret.json
+out
+#secret.json
 src/templates/compiled.js
 .grunt
 _SpecRunner.html
-
 history.json
+.*
 
 # tern.js noise
 .tern-port
